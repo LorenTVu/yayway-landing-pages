@@ -1,0 +1,872 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YayWay: Investor Pitch Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .chart-container {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 350px;
+      }
+      @media (min-width: 768px) {
+        .chart-container {
+          height: 450px;
+        }
+      }
+      .flowchart-node {
+        border: 2px solid;
+        padding: 0.75rem 1.25rem;
+        border-radius: 9999px;
+        text-align: center;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      .flowchart-arrow {
+        position: relative;
+        width: 100%;
+        height: 2px;
+        margin: 1.5rem 0;
+      }
+      .flowchart-arrow::after {
+        content: "▼";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1.5rem;
+        padding: 0 0.5rem;
+      }
+    </style>
+  </head>
+  <body class="bg-[#F0F2F5]">
+    <header
+      class="text-white text-center py-20 px-6"
+      style="background: linear-gradient(135deg, #7c4dff 0%, #f472b6 100%)"
+    >
+      <h1 class="text-4xl md:text-6xl font-black mb-4 tracking-tight">
+        YayWay
+      </h1>
+      <p class="text-xl md:text-2xl font-semibold">
+        The Future of Social Karaoke is Here.
+      </p>
+      <p class="max-w-3xl mx-auto mt-4 text-lg">
+        A next-generation platform for live, synchronized karaoke rooms, turning
+        passive scrolling into active, shared musical experiences.
+      </p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+      <section class="mb-12">
+        <h2 class="text-3xl font-bold text-center mb-2 text-gray-800">
+          A Colossal Market Opportunity
+        </h2>
+        <p class="text-center text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+          YayWay is positioned at the intersection of three massive, high-growth
+          markets, creating a powerful and defensible position.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-white rounded-lg shadow-md p-6 flex flex-col">
+            <h3 class="text-2xl font-bold text-gray-800 mb-3">
+              Global Karaoke Market
+            </h3>
+            <p class="text-gray-600 mb-4 flex-grow">
+              The foundational behavior is already a multi-billion dollar
+              industry, rapidly shifting from venues to mobile devices.
+            </p>
+            <p class="text-5xl font-extrabold text-gray-900 mb-2">$10B+</p>
+            <p class="font-semibold text-gray-500">
+              Projected Market Size by 2032
+            </p>
+          </div>
+          <div class="bg-white rounded-lg shadow-md p-6 flex flex-col">
+            <h3 class="text-2xl font-bold text-gray-800 mb-3">
+              Music App Ecosystem
+            </h3>
+            <p class="text-gray-600 mb-4 flex-grow">
+              Fueled by the global shift to streaming and social features, this
+              market provides the digital landscape for YayWay to thrive.
+            </p>
+            <p class="text-5xl font-extrabold text-gray-900 mb-2">$66B+</p>
+            <p class="font-semibold text-gray-500">
+              Projected Market Size by 2033
+            </p>
+          </div>
+          <div class="bg-white rounded-lg shadow-md p-6 flex flex-col">
+            <h3 class="text-2xl font-bold text-[#FFC107] mb-3">
+              The Creator Economy
+            </h3>
+            <p class="text-gray-600 mb-4 flex-grow">
+              The explosive growth vector. YayWay empowers music creators with
+              tools for performance, content creation, and direct monetization.
+            </p>
+            <p class="text-5xl font-extrabold text-gray-900 mb-2">$480B+</p>
+            <p class="font-semibold text-gray-500">
+              Projected Market Size by 2027
+            </p>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-6 mt-8">
+          <h3 class="text-2xl font-bold text-center mb-4 text-gray-800">
+            Market Growth Projections (USD Billions)
+          </h3>
+          <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto">
+            This chart visualizes the powerful, sustained growth across all
+            three key market segments, highlighting the immense potential scale
+            for YayWay.
+          </p>
+          <div class="chart-container">
+            <canvas id="marketGrowthChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <hr class="my-12" />
+
+      <section class="mb-12">
+        <h2 class="text-3xl font-bold text-center mb-2 text-gray-800">
+          The Problem: A Disconnected Experience
+        </h2>
+        <p class="text-center text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+          Singing online is popular, but today's platforms fail to deliver a
+          true social karaoke experience, leaving users and creators frustrated.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          <div class="bg-white rounded-lg shadow-md p-6">
+            <p class="text-6xl mb-4">😵</p>
+            <h3 class="text-xl font-bold mb-2 text-gray-800">
+              Chaotic Generalist Platforms
+            </h3>
+            <p class="text-gray-600">
+              Livestreams on TikTok or Instagram lack focus, features, and
+              creator protection. They are content feeds, not social venues for
+              music.
+            </p>
+          </div>
+          <div class="bg-white rounded-lg shadow-md p-6">
+            <p class="text-6xl mb-4">🎙️</p>
+            <h3 class="text-xl font-bold mb-2 text-gray-800">
+              Asynchronous & Solitary Apps
+            </h3>
+            <p class="text-gray-600">
+              Apps like Smule focus on solo recording sessions. They miss the
+              live, interactive, and communal energy of real karaoke.
+            </p>
+          </div>
+          <div class="bg-white rounded-lg shadow-md p-6">
+            <p class="text-6xl mb-4">💔</p>
+            <h3 class="text-xl font-bold mb-2 text-gray-800">
+              Underserved & Unprotected Creators
+            </h3>
+            <p class="text-gray-600">
+              Talented singers lack clear paths to monetization and building a
+              dedicated audience. Their passion isn't rewarded fairly.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <hr class="my-12" />
+
+      <section class="mb-12">
+        <h2 class="text-3xl font-bold text-center mb-2 text-gray-800">
+          YayWay's Competitive Edge
+        </h2>
+        <p class="text-center text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+          YayWay isn't just another singing app. It's the only platform that
+          combines the best of social, creator, and discovery features into one
+          seamless experience.
+        </p>
+        <div class="bg-white rounded-lg shadow-md overflow-x-auto">
+          <table class="w-full text-left">
+            <thead class="bg-gray-50 border-b">
+              <tr>
+                <th class="p-4 font-semibold text-gray-700">Feature</th>
+                <th
+                  class="p-4 font-bold text-center text-white"
+                  style="background-color: #7c4dff"
+                >
+                  YayWay
+                </th>
+                <th class="p-4 font-semibold text-center text-gray-700">
+                  Smule
+                </th>
+                <th class="p-4 font-semibold text-center text-gray-700">
+                  WeSing
+                </th>
+                <th class="p-4 font-semibold text-center text-gray-700">
+                  TikTok
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y">
+              <tr class="hover:bg-gray-50">
+                <td class="p-4 font-semibold">Real-Time Multi-User Rooms</td>
+                <td class="p-4 text-center font-bold text-2xl text-green-500">
+                  ✅
+                </td>
+                <td class="p-4 text-center font-bold text-2xl text-red-500">
+                  ❌
+                </td>
+                <td class="p-4 text-center font-bold text-2xl text-green-500">
+                  ✅
+                </td>
+                <td class="p-4 text-center font-bold text-2xl text-red-500">
+                  ❌
+                </td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="p-4 font-semibold">Creator Monetization (Gifts)</td>
+                <td class="p-4 text-center font-bold text-2xl text-green-500">
+                  ✅
+                </td>
+                <td class="p-4 text-center font-bold text-2xl text-yellow-500">
+                  🟡
+                </td>
+                <td class="p-4 text-center font-bold text-2xl text-green-500">
+                  ✅
+                </td>
+                <td class="p-4 text-center font-bold text-2xl text-green-500">
+                  ✅
+                </td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="p-4 font-semibold">Transparent Revenue Share</td>
+                <td class="p-4 text-center font-bold text-2xl text-green-500">
+                  ✅
+                </td>
+                <td class="p-4 text-center font-bold text-2xl text-red-500">
+                  ❌
+                </td>
+                <td class="p-4 text-center font-bold text-2xl text-red-500">
+                  ❌
+                </td>
+                <td class="p-4 text-center font-bold text-2xl text-red-500">
+                  ❌
+                </td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="p-4 font-semibold">Short-Form Video Discovery</td>
+                <td class="p-4 text-center font-bold text-2xl text-green-500">
+                  ✅
+                </td>
+                <td class="p-4 text-center font-bold text-2xl text-yellow-500">
+                  🟡
+                </td>
+                <td class="p-4 text-center font-bold text-2xl text-yellow-500">
+                  🟡
+                </td>
+                <td class="p-4 text-center font-bold text-2xl text-green-500">
+                  ✅
+                </td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="p-4 font-semibold">
+                  Performance Scoring/Gamification
+                </td>
+                <td class="p-4 text-center font-bold text-2xl text-green-500">
+                  ✅
+                </td>
+                <td class="p-4 text-center font-bold text-2xl text-red-500">
+                  ❌
+                </td>
+                <td class="p-4 text-center font-bold text-2xl text-green-500">
+                  ✅
+                </td>
+                <td class="p-4 text-center font-bold text-2xl text-red-500">
+                  ❌
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-center text-sm text-gray-500 mt-4">
+          Key: ✅ Core Feature, 🟡 Limited Feature, ❌ Not a Feature
+        </p>
+      </section>
+
+      <hr class="my-12" />
+
+      <section class="mb-12">
+        <h2 class="text-3xl font-bold text-center mb-2 text-gray-800">
+          The Monetization Flywheel
+        </h2>
+        <p class="text-center text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+          Our hybrid model creates a self-reinforcing virtuous cycle, driving
+          both user engagement and diversified revenue.
+        </p>
+        <div class="bg-white rounded-lg shadow-md p-8">
+          <div class="flex flex-col items-center">
+            <div
+              class="flowchart-node border-purple-500 text-purple-700 bg-purple-500/10"
+            >
+              User Acquisition (Viral Clips & Influencer Marketing)
+            </div>
+            <div class="flowchart-arrow text-purple-500"></div>
+            <div
+              class="flowchart-node border-pink-500 text-pink-700 bg-pink-500/10"
+            >
+              Engagement (Freemium Model, Points System & Gamification)
+            </div>
+            <div class="flowchart-arrow text-pink-500"></div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+              <div
+                class="flowchart-node border-gray-400 text-gray-600 bg-gray-100 h-full flex items-center justify-center"
+              >
+                Subscriptions
+              </div>
+              <div
+                class="flowchart-node border-gray-400 text-gray-600 bg-gray-100 h-full flex items-center justify-center"
+              >
+                Advertising
+              </div>
+              <div
+                class="flowchart-node border-gray-400 text-gray-600 bg-gray-100 h-full flex items-center justify-center"
+              >
+                In-App Purchases
+              </div>
+            </div>
+            <div class="flowchart-arrow text-gray-400"></div>
+            <div
+              class="flowchart-node border-[#FFC107] text-[#D4A106] bg-[#FFC107]/10"
+            >
+              Creator Empowerment (Virtual Gifts & Revenue Sharing)
+            </div>
+            <div class="flowchart-arrow text-[#FFC107]"></div>
+            <div class="text-center">
+              <p
+                class="text-2xl font-bold text-gray-600 transform -rotate-12 -translate-x-32 -translate-y-4"
+              >
+                ↩️
+              </p>
+              <p class="font-semibold text-gray-600">
+                Creators promote the platform, generating more viral clips and
+                restarting the cycle.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="my-12" />
+
+      <section class="mb-12">
+        <h2 class="text-3xl font-bold text-center mb-2 text-gray-800">
+          The Underserved User: Gen Z & Millennials
+        </h2>
+        <p class="text-center text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+          YayWay is built for the behaviors and preferences of today's digital
+          natives, who crave authenticity, community, and direct participation.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="bg-white rounded-lg shadow-md p-6">
+            <h3 class="text-2xl font-bold text-center mb-4 text-gray-800">
+              Social Discovery Habits
+            </h3>
+            <p class="text-center text-gray-600 mb-6">
+              Our viral clip strategy aligns perfectly with how Gen Z discovers
+              new things, providing a powerful, native user acquisition channel.
+            </p>
+            <div class="chart-container h-64 md:h-80">
+              <canvas id="discoveryChart"></canvas>
+            </div>
+          </div>
+          <div class="bg-white rounded-lg shadow-md p-6">
+            <h3 class="text-2xl font-bold text-center mb-4 text-gray-800">
+              Creator Economy Participation
+            </h3>
+            <p class="text-center text-gray-600 mb-6">
+              This demographic doesn't just consume content; they actively
+              support creators, validating our virtual gifting and premium duet
+              monetization features.
+            </p>
+            <div class="chart-container h-64 md:h-80">
+              <canvas id="creatorSupportChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="my-12" />
+
+      <section class="mb-12">
+        <h2 class="text-3xl font-bold text-center mb-2 text-gray-800">
+          A Clear Path to Profitability
+        </h2>
+        <p class="text-center text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+          Our detailed model shows a clear, credible path to break-even within
+          the 24-month runway and significant profitability in Year 3.
+        </p>
+        <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
+          <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
+            <div class="lg:col-span-3">
+              <div
+                class="chart-container"
+                style="max-width: 100%; height: 400px"
+              >
+                <canvas id="financialsChart"></canvas>
+              </div>
+            </div>
+            <div class="lg:col-span-2 space-y-4 text-center lg:text-left">
+              <div>
+                <p
+                  class="text-sm font-bold text-gray-500 uppercase tracking-wider"
+                >
+                  Year 3 Highlights
+                </p>
+                <p class="text-3xl font-extrabold text-gray-900">7 Million</p>
+                <p class="text-gray-600">Monthly Active Users (MAUs)</p>
+              </div>
+              <div>
+                <p class="text-3xl font-extrabold text-gray-900">$42 Million</p>
+                <p class="text-gray-600">Total Revenue</p>
+              </div>
+              <div>
+                <p class="text-3xl font-extrabold text-green-600">
+                  $12.6 Million
+                </p>
+                <p class="text-gray-600">EBITDA</p>
+              </div>
+              <div>
+                <p
+                  class="text-sm font-bold text-gray-500 uppercase tracking-wider"
+                >
+                  Key Metrics
+                </p>
+                <p class="text-xl font-bold text-gray-800">
+                  Break-Even: Q4, Year 2
+                </p>
+                <p class="text-xl font-bold text-gray-800">
+                  LTV:CAC Ratio > 3:1
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="my-12" />
+
+      <section>
+        <h2 class="text-3xl font-bold text-center mb-2 text-gray-800">
+          The Ask & Use of Funds
+        </h2>
+        <p class="text-center text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+          We are raising a $2.5M seed round to accelerate product development,
+          secure foundational music licenses, and initiate our go-to-market
+          strategy.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div class="bg-white rounded-lg shadow-md p-6">
+            <h3 class="text-2xl font-bold text-center mb-4 text-gray-800">
+              Seed Round Allocation
+            </h3>
+            <p class="text-center text-gray-600 mb-6">
+              Funds will be strategically deployed to build the product, de-risk
+              the business through licensing, and kickstart user growth.
+            </p>
+            <div class="chart-container h-80 md:h-96">
+              <canvas id="fundsChart"></canvas>
+            </div>
+          </div>
+          <div class="space-y-6">
+            <div class="flex items-start">
+              <div
+                class="w-4 h-4 rounded-full mt-1.5 mr-4 flex-shrink-0"
+                style="background-color: #7c4dff"
+              ></div>
+              <div>
+                <h4 class="font-bold text-xl">Technology & Product (40%)</h4>
+                <p class="text-gray-600">
+                  Hire a world-class engineering team to build our core
+                  low-latency streaming technology and feature set.
+                </p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div
+                class="w-4 h-4 rounded-full mt-1.5 mr-4 flex-shrink-0"
+                style="background-color: #f472b6"
+              ></div>
+              <div>
+                <h4 class="font-bold text-xl">Music Licensing (25%)</h4>
+                <p class="text-gray-600">
+                  Secure foundational sync, master, and performance rights to
+                  de-risk the business from day one.
+                </p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div
+                class="w-4 h-4 rounded-full mt-1.5 mr-4 flex-shrink-0"
+                style="background-color: #ffc107"
+              ></div>
+              <div>
+                <h4 class="font-bold text-xl">Marketing & UA (25%)</h4>
+                <p class="text-gray-600">
+                  Fund our influencer-led launch campaign and establish baseline
+                  paid acquisition metrics.
+                </p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div
+                class="w-4 h-4 rounded-full mt-1.5 mr-4 flex-shrink-0"
+                style="background-color: #4caf50"
+              ></div>
+              <div>
+                <h4 class="font-bold text-xl">General & Admin (10%)</h4>
+                <p class="text-gray-600">
+                  Cover essential operational costs including legal, accounting,
+                  and founder salaries.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="text-center p-8 mt-12 bg-gray-800 text-white">
+      <p class="font-bold text-2xl mb-2">
+        Join Us in Building the World's #1 Social Music Community.
+      </p>
+      <p>YayWay: Create. Share. Sing Together.</p>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const defaultChartOptions = {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: "bottom",
+              labels: {
+                padding: 20,
+                font: {
+                  size: 14,
+                  family: "Inter",
+                },
+                color: "#475569",
+              },
+            },
+            tooltip: {
+              enabled: true,
+              titleFont: { size: 16, family: "Inter", weight: "bold" },
+              bodyFont: { size: 14, family: "Inter" },
+              padding: 12,
+              boxPadding: 4,
+            },
+          },
+          scales: {
+            x: {
+              ticks: { color: "#475569", font: { family: "Inter" } },
+              grid: { display: false },
+            },
+            y: {
+              ticks: { color: "#475569", font: { family: "Inter" } },
+              grid: { color: "#E2E8F0" },
+            },
+          },
+        };
+
+        const defaultDoughnutOptions = {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: "70%",
+          plugins: {
+            legend: {
+              position: "bottom",
+              labels: {
+                padding: 20,
+                font: { size: 14, family: "Inter" },
+                color: "#475569",
+              },
+            },
+            tooltip: {
+              enabled: true,
+              callbacks: {
+                label: function (context) {
+                  let label = context.label || "";
+                  if (label) {
+                    label += ": ";
+                  }
+                  if (context.parsed !== null) {
+                    label += context.parsed + "%";
+                  }
+                  return label;
+                },
+              },
+            },
+          },
+        };
+
+        // Market Growth Chart
+        const marketGrowthChartCtx = document
+          .getElementById("marketGrowthChart")
+          .getContext("2d");
+        new Chart(marketGrowthChartCtx, {
+          type: "line",
+          data: {
+            labels: ["2024", "2027", "2030", "2033"],
+            datasets: [
+              {
+                label: "Karaoke Market",
+                data: [6, 7.3, 8.8, 10.5],
+                borderColor: "#7C4DFF",
+                backgroundColor: "#7C4DFF20",
+                fill: true,
+                tension: 0.4,
+              },
+              {
+                label: "Music App Market",
+                data: [33.2, 45, 55.5, 66.5],
+                borderColor: "#F472B6",
+                backgroundColor: "#F472B620",
+                fill: true,
+                tension: 0.4,
+              },
+              {
+                label: "Creator Economy",
+                data: [250, 480, 750, 980], // Extrapolated data
+                borderColor: "#FFC107",
+                backgroundColor: "#FFC10720",
+                fill: true,
+                tension: 0.4,
+              },
+            ],
+          },
+          options: {
+            ...defaultChartOptions,
+            scales: {
+              ...defaultChartOptions.scales,
+              y: {
+                ...defaultChartOptions.scales.y,
+                title: {
+                  display: true,
+                  text: "Market Size (USD Billions)",
+                  font: { weight: "bold" },
+                },
+              },
+            },
+          },
+        });
+
+        // Social Discovery Chart
+        const discoveryChartCtx = document
+          .getElementById("discoveryChart")
+          .getContext("2d");
+        new Chart(discoveryChartCtx, {
+          type: "doughnut",
+          data: {
+            labels: [
+              "Short-Form Video",
+              "Friends & Family",
+              "Influencers",
+              "Other",
+            ],
+            datasets: [
+              {
+                label: "Discovery Method",
+                data: [55, 25, 15, 5],
+                backgroundColor: ["#7C4DFF", "#F472B6", "#FFC107", "#4CAF50"],
+                borderColor: "#FFFFFF",
+                borderWidth: 2,
+              },
+            ],
+          },
+          options: defaultDoughnutOptions,
+        });
+
+        // Creator Support Chart
+        const creatorSupportChartCtx = document
+          .getElementById("creatorSupportChart")
+          .getContext("2d");
+        new Chart(creatorSupportChartCtx, {
+          type: "doughnut",
+          data: {
+            labels: [
+              "Purchased Merch",
+              "Sent Virtual Gift",
+              "Subscribed",
+              "Attended Event",
+            ],
+            datasets: [
+              {
+                label: "Support Action",
+                data: [30, 45, 20, 5],
+                backgroundColor: ["#355C7D", "#6C5B7B", "#C06C84", "#F67280"],
+                borderColor: "#FFFFFF",
+                borderWidth: 2,
+              },
+            ],
+          },
+          options: defaultDoughnutOptions,
+        });
+
+        // Use of Funds Chart
+        const fundsChartCtx = document
+          .getElementById("fundsChart")
+          .getContext("2d");
+        new Chart(fundsChartCtx, {
+          type: "doughnut",
+          data: {
+            labels: [
+              "Technology & Product",
+              "Music Licensing",
+              "Marketing & UA",
+              "General & Admin",
+            ],
+            datasets: [
+              {
+                label: "Use of Funds",
+                data: [40, 25, 25, 10],
+                backgroundColor: ["#7C4DFF", "#F472B6", "#FFC107", "#4CAF50"],
+                hoverOffset: 4,
+              },
+            ],
+          },
+          options: defaultDoughnutOptions,
+        });
+
+        // Financial Projections Chart
+        const financialsCtx = document
+          .getElementById("financialsChart")
+          .getContext("2d");
+        new Chart(financialsCtx, {
+          type: "bar",
+          data: {
+            labels: ["Year 1", "Year 2", "Year 3"],
+            datasets: [
+              {
+                label: "Revenue ($M)",
+                data: [1.5, 10, 42],
+                backgroundColor: "#355C7D",
+                yAxisID: "y",
+                order: 2,
+              },
+              {
+                label: "EBITDA ($M)",
+                data: [-2.4, -0.5, 12.6], // Adjusted Y2 for break-even
+                backgroundColor: "#F67280",
+                yAxisID: "y",
+                order: 3,
+              },
+              {
+                type: "line",
+                label: "MAUs (Millions)",
+                data: [0.5, 2.5, 7],
+                borderColor: "#6C5B7B",
+                backgroundColor: "rgba(108, 91, 123, 0.1)",
+                tension: 0.2,
+                fill: false,
+                yAxisID: "y1",
+                borderWidth: 3,
+                pointRadius: 5,
+                pointBackgroundColor: "#6C5B7B",
+                order: 1,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              title: {
+                display: false,
+              },
+              legend: {
+                position: "bottom",
+                labels: {
+                  padding: 20,
+                  font: {
+                    size: 14,
+                  },
+                },
+              },
+              tooltip: {
+                mode: "index",
+                intersect: false,
+                callbacks: {
+                  label: function (context) {
+                    let label = context.dataset.label || "";
+                    if (label) {
+                      label += ": ";
+                    }
+                    if (context.parsed.y !== null) {
+                      if (context.dataset.yAxisID === "y1") {
+                        label += context.parsed.y + "M";
+                      } else {
+                        label += "$" + context.parsed.y + "M";
+                      }
+                    }
+                    return label;
+                  },
+                },
+              },
+            },
+            scales: {
+              x: {
+                stacked: false,
+                grid: {
+                  display: false,
+                },
+              },
+              y: {
+                type: "linear",
+                display: true,
+                position: "left",
+                title: {
+                  display: true,
+                  text: "Revenue / EBITDA ($ Millions)",
+                  font: {
+                    size: 14,
+                    weight: "bold",
+                  },
+                },
+                grid: {
+                  color: "#e2e8f0",
+                },
+              },
+              y1: {
+                type: "linear",
+                display: true,
+                position: "right",
+                title: {
+                  display: true,
+                  text: "Users (Millions)",
+                  font: {
+                    size: 14,
+                    weight: "bold",
+                  },
+                },
+                grid: {
+                  drawOnChartArea: false,
+                },
+                ticks: {
+                  beginAtZero: true,
+                },
+              },
+            },
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
