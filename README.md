@@ -6,11 +6,27 @@ A modern, responsive landing page for YayWay's investment pitch, showcasing the 
 
 ```
 yayway-landing-pages/
-├── YayWay.html      # Main HTML file (544 lines, down from 784)
-├── Yayway.css       # External stylesheet (44 lines)
+├── index.html       # Main HTML file (548 lines)
+├── stylesheet.css   # External stylesheet (44 lines)
 ├── script.js        # External JavaScript for charts and interactions (183 lines)
+├── YayWayLogo.ico   # Company logo and favicon
+├── vercel.json      # Vercel deployment configuration
 └── README.md        # This file
 ```
+
+## Deployment
+
+This project is configured for deployment on Vercel:
+
+1. **GitHub Integration**: Connect your GitHub repository to Vercel
+2. **Automatic Deployments**: Every push to main branch triggers a new deployment
+3. **Custom Domain**: Add your domain in Vercel dashboard
+4. **Environment**: Production-ready with CDN optimization
+
+### Quick Deploy
+- Visit [vercel.com](https://vercel.com)
+- Import your GitHub repository
+- Deploy automatically
 
 ## Benefits of This Structure
 
@@ -40,6 +56,7 @@ yayway-landing-pages/
 - **Interactive Charts**: Market data, funding allocation, and financial projections
 - **Smooth Navigation**: Active state tracking and smooth scrolling
 - **Modern UI**: Clean, professional design with consistent branding
+- **Brand Integration**: YayWay logo as favicon and header branding
 
 ## Technologies Used
 
@@ -48,15 +65,18 @@ yayway-landing-pages/
 - **Chart.js**: Interactive data visualizations
 - **Vanilla JavaScript**: Modern ES6+ features
 - **Google Fonts**: Inter font family
+- **Vercel**: Hosting and deployment platform
 
 ## Getting Started
 
-1. Open `YayWay.html` in a web browser
+1. Open `index.html` in a web browser
 2. All dependencies are loaded from CDNs
 3. No build process required
 
 ## File Descriptions
 
-- **YayWay.html**: Main landing page with all content sections
-- **Yayway.css**: Custom styles for charts, navigation, and animations
-- **script.js**: Chart configurations and navigation functionality 
+- **index.html**: Main landing page with all content sections
+- **stylesheet.css**: Custom styles for charts, navigation, and animations
+- **script.js**: Chart configurations and navigation functionality
+- **YayWayLogo.ico**: Company logo used as favicon and header branding
+- **vercel.json**: Vercel deployment configuration for optimal hosting 
