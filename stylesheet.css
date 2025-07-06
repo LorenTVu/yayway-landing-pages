@@ -3,6 +3,15 @@ body {
   background-color: #f8f7f4;
   color: #403a3a;
 }
+
+/* Logo styling */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 800;
+  color: #2A4B8D;
+}
+
 .chart-container {
   position: relative;
   width: 100%;
@@ -12,29 +21,35 @@ body {
   height: 350px;
   max-height: 400px;
 }
+
 @media (min-width: 768px) {
   .chart-container {
     height: 400px;
   }
 }
+
 .nav-link {
   transition:
     color 0.3s,
     border-color 0.3s;
 }
+
 .nav-link.active {
   color: #D4A017;
   border-bottom-color: #D4A017;
 }
+
 .stat-card {
   background-color: #ffffff;
   border-left: 5px solid #2A4B8D;
 }
+
 .flow-node {
   transition:
     transform 0.3s,
     box-shadow 0.3s;
 }
+
 .flow-node:hover {
   transform: translateY(-5px);
   box-shadow:

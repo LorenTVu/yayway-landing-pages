@@ -6,12 +6,13 @@ A modern, responsive landing page for YayWay's investment pitch, showcasing the 
 
 ```
 yayway-landing-pages/
-├── index.html       # Main HTML file (548 lines)
-├── stylesheet.css   # External stylesheet (44 lines)
-├── script.js        # External JavaScript for charts and interactions (183 lines)
-├── YayWayLogo.ico   # Company logo and favicon
-├── vercel.json      # Vercel deployment configuration
-└── README.md        # This file
+├── index.html         # Main HTML file (550 lines)
+├── stylesheet.css     # External stylesheet (59 lines)
+├── script.js          # External JavaScript for charts and interactions (183 lines)
+├── assets/            # Static assets folder
+│   └── YayWayLogo.ico # Company logo
+├── vercel.json        # Vercel deployment configuration
+└── README.md          # This file
 ```
 
 ## Deployment
@@ -78,5 +79,5 @@ This project is configured for deployment on Vercel:
 - **index.html**: Main landing page with all content sections
 - **stylesheet.css**: Custom styles for charts, navigation, and animations
 - **script.js**: Chart configurations and navigation functionality
-- **YayWayLogo.ico**: Company logo used as favicon and header branding
+- **assets/YayWayLogo.ico**: Company logo used in header branding
 - **vercel.json**: Vercel deployment configuration for optimal hosting 
