@@ -7,14 +7,19 @@ document.addEventListener("DOMContentLoaded", () => {
     grey: "#E2E8F0",
   };
 
-  const defaultTooltipCallback = (tooltipItems) => {
-    const item = tooltipItems;
-    let label = item.chart.data.labels[item.dataIndex];
-    if (Array.isArray(label)) {
-      return label.join(" ");
+  // Custom tooltip label callback for detailed statistics
+  function tooltipLabelCallback(context) {
+    let label = context.dataset.label || '';
+    if (label) {
+      label += ': ';
+    }
+    if (context.parsed.y !== undefined) {
+      label += context.parsed.y;
+    } else if (context.parsed !== undefined) {
+      label += context.parsed;
     }
     return label;
-  };
+  }
 
   // Market Chart
   const marketChartCtx = document.getElementById("marketChart").getContext("2d");
@@ -44,7 +49,12 @@ document.addEventListener("DOMContentLoaded", () => {
       maintainAspectRatio: false,
       plugins: {
         legend: { position: "bottom" },
-        tooltip: { callbacks: { title: defaultTooltipCallback } },
+        tooltip: {
+          enabled: true,
+          callbacks: {
+            label: tooltipLabelCallback
+          }
+        },
         title: {
           display: true,
           text: "Market Size & Projections (USD Billions)",
@@ -87,7 +97,23 @@ document.addEventListener("DOMContentLoaded", () => {
       cutout: "60%",
       plugins: {
         legend: { position: "right" },
-        tooltip: { callbacks: { title: defaultTooltipCallback } },
+        tooltip: {
+          enabled: true,
+          callbacks: {
+            label: function(context) {
+              // Show label and value with %
+              let label = context.label || '';
+              let value = context.parsed;
+              if (label) {
+                label += ': ';
+              }
+              if (value !== undefined) {
+                label += value + '%';
+              }
+              return label;
+            }
+          }
+        },
       },
     },
   });
@@ -134,9 +160,25 @@ document.addEventListener("DOMContentLoaded", () => {
       plugins: {
         legend: { position: "bottom" },
         tooltip: {
+          enabled: true,
           mode: "index",
           intersect: false,
-          callbacks: { title: defaultTooltipCallback },
+          callbacks: {
+            label: function(context) {
+              let label = context.dataset.label || '';
+              if (label) {
+                label += ': ';
+              }
+              if (context.parsed.y !== undefined) {
+                if (context.dataset.label === 'MAUs (Millions)') {
+                  label += context.parsed.y + 'M';
+                } else {
+                  label += '$' + context.parsed.y + 'M';
+                }
+              }
+              return label;
+            }
+          }
         },
       },
       scales: {
@@ -157,7 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 
-  // Navigation active state
+  // Nav link active state on scroll
   const sections = document.querySelectorAll("main section");
   const navLinks = document.querySelectorAll(".nav-link");
 
